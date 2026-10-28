@@ -1,0 +1,12 @@
+# Hootly funding links (shows a "Sponsor" button on the repo)
+# Remove the "#" at the start of any line you want to use,
+# and replace the value with your own username or link.
+# Leave a line commented out if you don't have that account yet.
+
+# github: edupotnurusrichandan        # needs GitHub Sponsors to be set up for your account
+# patreon: your-patreon-username
+# ko_fi: your-kofi-username
+# buy_me_a_coffee: your-bmc-username
+# open_collective: your-collective-name
+# liberapay: your-liberapay-username
+# custom: ["https://your-link-here.com"]
