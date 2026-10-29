@@ -48,11 +48,6 @@ export const ReadingModeModal: React.FC<ReadingModeModalProps> = ({ isOpen, onCl
   const handleToggleDyslexiaFont = () => {
     const nextVal = !settings?.dyslexiaFontEnabled;
     updateSettings({ dyslexiaFontEnabled: nextVal });
-    if (nextVal) {
-      document.body.classList.add('dyslexia-font');
-    } else {
-      document.body.classList.remove('dyslexia-font');
-    }
   };
 
   const handleToggleFocusRuler = () => {
@@ -293,16 +288,16 @@ export const ReadingModeModal: React.FC<ReadingModeModalProps> = ({ isOpen, onCl
               />
             </div>
 
-            {/* Dyslexia-friendly font */}
+            {/* High-legibility text */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <Type size={18} style={{ color: '#10b981' }} />
                 <div>
                   <div style={{ fontSize: '13px', fontWeight: 500, color: 'var(--text)' }}>
-                    High-Legibility / Dyslexia Font
+                    High-legibility text
                   </div>
                   <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-                    Wider letter-spacing and distinctive weighted glyphs for readability
+                    Uses a simple sans-serif font and more open letter spacing across Hootly
                   </div>
                 </div>
               </div>

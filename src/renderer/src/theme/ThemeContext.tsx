@@ -87,6 +87,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     root.setAttribute('data-mode', effectiveMode);
   }, [activeTheme, effectiveMode]);
 
+  useEffect(() => {
+    document.documentElement.dataset.highContrast = settings?.highContrastMode ? 'true' : 'false';
+    document.body.classList.toggle('high-legibility-font', Boolean(settings?.dyslexiaFontEnabled));
+  }, [settings?.highContrastMode, settings?.dyslexiaFontEnabled]);
+
   const setThemeId = (newId: string) => {
     if (THEMES_BY_ID[newId]) {
       setThemeIdState(newId);

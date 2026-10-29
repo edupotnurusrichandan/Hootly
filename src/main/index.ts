@@ -5,6 +5,7 @@ import fs from 'fs';
 import { SettingsStore } from './settingsStore';
 import { CredentialsManager } from './CredentialsManager';
 import { isBlockedRequestUrl } from './adBlock';
+import { registerWebPermissionHandlers } from './webPermissions';
 import { TabManager } from './TabManager';
 import { ALL_THEMES } from '../themes';
 import { UserSettings, StudySession } from '../shared/types';
@@ -20,6 +21,33 @@ let mainWindow: BrowserWindow | null = null;
 let tabManager: TabManager | null = null;
 const settingsStore = new SettingsStore();
 const credentialsManager = new CredentialsManager();
+
+const sitePermissionLabels: Record<string, string> = {
+  media: 'camera or microphone',
+  'display-capture': 'screen sharing',
+  geolocation: 'your location',
+  notifications: 'notifications',
+  'clipboard-read': 'reading your clipboard',
+  pointerLock: 'locking the pointer',
+  fullscreen: 'fullscreen access',
+  midi: 'MIDI devices',
+  midiSysex: 'MIDI device access'
+};
+
+function confirmWebsitePermission(owner: BrowserWindow, permission: string, origin: string): Promise<boolean> {
+  const permissionLabel = sitePermissionLabels[permission];
+  if (!permissionLabel) return Promise.resolve(false);
+  return dialog.showMessageBox(owner, {
+    type: 'question',
+    title: 'Website permission request',
+    message: `Allow this website to use ${permissionLabel}?`,
+    detail: `${origin}\n\nApproval is temporary and limited to this tab for up to 15 minutes.`,
+    buttons: ['Block', 'Allow once'],
+    defaultId: 0,
+    cancelId: 0,
+    noLink: true
+  }).then((result) => result.response === 1);
+}
 
 function setupAutoUpdater() {
   if (!app.isPackaged) return;
@@ -489,6 +517,8 @@ function registerIpcHandlers() {
 }
 
 app.whenReady().then(() => {
+  registerWebPermissionHandlers(session.defaultSession, () => mainWindow, confirmWebsitePermission);
+
   session.defaultSession.webRequest.onBeforeRequest({ urls: ['<all_urls>'] }, (details, callback) => {
     callback({ cancel: settingsStore.get().adBlockEnabled && isBlockedRequestUrl(details.url) });
   });

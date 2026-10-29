@@ -133,6 +133,8 @@ describe('Electron security configuration', () => {
   const preloadSource = fs.readFileSync(path.join(root, 'src', 'preload', 'index.ts'), 'utf8');
   const credentialsSource = fs.readFileSync(path.join(root, 'src', 'main', 'CredentialsManager.ts'), 'utf8');
   const packageConfig = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+  const permissionsSource = fs.readFileSync(path.join(root, 'src', 'main', 'webPermissions.ts'), 'utf8');
+  const localHtml = fs.readFileSync(path.join(root, 'src', 'renderer', 'index.html'), 'utf8');
 
   test('isolates local UI and web content from Node and renderer IPC internals', () => {
     assert.match(mainSource, /contextIsolation:\s*true/);
@@ -161,6 +163,27 @@ describe('Electron security configuration', () => {
   test('limits web views to HTTP(S) and an explicit in-app route allowlist', () => {
     assert.match(tabsSource, /url\.protocol === 'http:' \|\| url\.protocol === 'https:'/);
     assert.match(tabsSource, /dashboard\|streak\|exams\|settings\|bookmarks\|adblock\|review/);
+  });
+
+  test('prompts for supported website permissions and denies unknown permissions by default', () => {
+    assert.match(mainSource, /registerWebPermissionHandlers\(session\.defaultSession/);
+    assert.match(permissionsSource, /setPermissionRequestHandler/);
+    assert.match(permissionsSource, /setPermissionCheckHandler/);
+    assert.match(permissionsSource, /PROMPTABLE_PERMISSIONS\.has\(permission\)/);
+    assert.match(permissionsSource, /GRANT_LIFETIME_MS = 15 \* 60 \* 1000/);
+    assert.match(localHtml, /Content-Security-Policy/);
+    assert.match(localHtml, /script-src 'self'/);
+    assert.match(localHtml, /object-src 'none'/);
+  });
+
+  test('connects saved accessibility toggles to real UI styles', () => {
+    const themeSource = fs.readFileSync(path.join(root, 'src', 'renderer', 'src', 'theme', 'ThemeContext.tsx'), 'utf8');
+    const cssSource = fs.readFileSync(path.join(root, 'src', 'renderer', 'src', 'index.css'), 'utf8');
+    assert.match(themeSource, /dataset\.highContrast = settings\?\.highContrastMode/);
+    assert.match(themeSource, /high-legibility-font/);
+    assert.match(cssSource, /:root\[data-high-contrast='true'\]/);
+    assert.match(cssSource, /body\.high-legibility-font/);
+    assert.match(cssSource, /prefers-reduced-motion: reduce/);
   });
 
   test('never disables Chromium sandbox in the screenshot launch helper', () => {
