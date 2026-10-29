@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hootly: the browser that helps you study</title>
+<meta name="description" content="Hootly is a Windows browser for school and university students. Track study time, build habits, and get gentle focus help from a friendly owl.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --base:#ffffff; --ink:#1f1b33; --muted:#5a5675;
+  --accent:#5b4bdb; --from:#5b4bdb; --to:#12a4c9;
+  --bg:color-mix(in srgb,var(--accent) 7%,var(--base));
+  --surface:color-mix(in srgb,var(--accent) 3%,var(--base));
+  --line:color-mix(in srgb,var(--accent) 18%,var(--base));
+  --shadow:0 10px 30px color-mix(in srgb,var(--accent) 18%,transparent);
+  --display:"Fredoka","Trebuchet MS",system-ui,sans-serif;
+  --body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--ink:#f2f0ff;--muted:#b9b4d6;--base:#151222;
+    --bg:color-mix(in srgb,var(--accent) 12%,#151222);
+    --surface:color-mix(in srgb,var(--accent) 16%,#151222);
+    --line:color-mix(in srgb,var(--accent) 30%,#151222);
+    --shadow:0 10px 30px rgba(0,0,0,.35)}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body);transition:background .3s,color .3s}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.15;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:var(--base);padding:8px 12px;z-index:9}
+
+/* nav */
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.logo{font:600 1.5rem var(--display);text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo svg{width:34px;height:34px}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+nav ul a{text-decoration:none;color:var(--muted);font-weight:600}
+nav ul a:hover{color:var(--ink)}
+
+/* buttons */
+.btn{display:inline-block;font:600 1rem var(--body);padding:13px 24px;border-radius:14px;text-decoration:none;border:2px solid transparent;cursor:pointer}
+.btn.main{background:linear-gradient(135deg,var(--from),var(--to));color:#fff;box-shadow:var(--shadow)}
+.btn.main[aria-disabled=true]{cursor:default;opacity:.92}
+.btn.ghost{border-color:var(--line);background:var(--surface)}
+.btn.ghost:hover{border-color:var(--accent)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center;padding:36px 0 72px}
+.hero h1{font-size:clamp(2.4rem,5.4vw,3.8rem);letter-spacing:-.01em}
+.hero p.lead{font-size:1.2rem;color:var(--muted);margin:20px 0 28px;max-width:34ch}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.note{margin-top:14px;font-size:.95rem;color:var(--muted)}
+
+/* browser mock */
+.frame{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.tabs{display:flex;gap:6px;padding:12px 14px 0;background:linear-gradient(135deg,var(--from),var(--to))}
+.tab{background:color-mix(in srgb,#fff 28%,transparent);color:#fff;font-size:.82rem;font-weight:600;padding:7px 16px;border-radius:12px 12px 0 0}
+.tab.on{background:var(--surface);color:var(--ink)}
+.bar{display:flex;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)}
+.addr{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:5px 16px;font-size:.88rem;color:var(--muted)}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.page{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:22px 24px 26px}
+.owl{width:100%;max-width:230px;justify-self:center}
+#owl-big .blink{transform-origin:100px 82px;animation:blink 5.5s infinite}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.08)}}
+.greet h3{font-size:1.45rem}
+.greet p{color:var(--muted);font-size:.98rem;margin-top:4px}
+.stats{display:flex;gap:16px;align-items:center;margin-top:16px}
+.ring{width:74px;height:74px;flex:none}
+.ring text{font:600 17px var(--display);fill:var(--ink)}
+.pill{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 14px;font-weight:700;font-size:.95rem}
+.pill small{display:block;font-weight:600;color:var(--muted);font-size:.78rem}
+
+/* theme picker */
+.picker{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}
+.picker span{font-weight:700}
+.sw{width:34px;height:34px;border-radius:50%;border:3px solid var(--base);cursor:pointer;box-shadow:0 0 0 2px var(--line);padding:0}
+.sw[aria-pressed=true]{box-shadow:0 0 0 3px var(--ink)}
+
+/* sections */
+section{padding:72px 0}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.head{max-width:620px;margin-bottom:38px}
+.head h2{font-size:clamp(1.8rem,3.6vw,2.5rem)}
+.head p{color:var(--muted);margin-top:12px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+.feat article{padding:26px;border-radius:18px;background:var(--surface);border:1px solid var(--line)}
+.alt .feat article{background:var(--bg)}
+.feat h3{font-size:1.28rem;margin-bottom:8px}
+.feat p{color:var(--muted);font-size:1rem}
+.feat .big{grid-column:span 2}
+@media(max-width:760px){.feat .big{grid-column:auto}}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.checks li{padding:16px 18px;border-radius:14px;background:var(--bg);border:1px solid var(--line)}
+.checks b{display:block;font-family:var(--display);font-weight:500;font-size:1.1rem}
+.checks span{color:var(--muted);font-size:.98rem}
+
+/* roadmap */
+ol.road{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:m}
+ol.road li{counter-increment:m;display:flex;gap:16px;align-items:center;padding:14px 18px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
+ol.road li::before{content:counter(m);flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:600 .95rem var(--display);border:2px solid var(--line)}
+ol.road li.done::before{content:"\2713";background:var(--accent);border-color:var(--accent);color:#fff}
+ol.road li div{flex:1}
+ol.road small{display:block;color:var(--muted);font-size:.92rem}
+.tag{font-size:.82rem;font-weight:700;color:var(--muted)}
+.done .tag{color:var(--accent)}
+@media(prefers-color-scheme:dark){.done .tag{color:var(--ink)}}
+
+footer{padding:44px 0 56px;color:var(--muted);font-size:.98rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media(max-width:860px){
+  .hero,.split{grid-template-columns:1fr}
+  nav ul{display:none}
+  .page{grid-template-columns:1fr}
+  .owl{max-width:190px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#features">Skip to content</a>
+<div class="wrap">
+<nav aria-label="Main">
+  <a class="logo" href="#top" id="top">
+    <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#owl-mini"/></svg>Hootly
+  </a>
+  <ul>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#privacy">Privacy</a></li>
+    <li><a href="#progress">Progress</a></li>
+    <li><a href="https://github.com/edupotnurusrichandan/hootly">GitHub</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1>The browser that helps you study</h1>
+    <p class="lead">Hootly tracks your study time, builds habits that last, and keeps you company with a friendly owl. No blocking, no guilt.</p>
+    <div class="cta">
+      <a class="btn main" href="#progress" aria-disabled="true">Windows beta coming soon</a>
+      <a class="btn ghost" href="https://github.com/edupotnurusrichandan/hootly">Follow on GitHub</a>
+    </div>
+    <p class="note">For school and university students. Runs on Chromium, so your study sites work as usual.</p>
+  </div>
+
+  <div>
+    <div class="frame" role="img" aria-label="Preview of the Hootly new-tab page showing the owl, a daily goal ring and a streak">
+      <div class="tabs"><span class="tab on">New tab</span><span class="tab">Biology notes</span><span class="tab">Past paper</span></div>
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="addr">hootly://new-tab</div></div>
+      <div class="page">
+        <div class="greet">
+          <h3>Good evening</h3>
+          <p>Hoot? Ready for a focused hour?</p>
+          <div class="stats">
+            <svg class="ring" viewBox="0 0 80 80" aria-hidden="true">
+              <circle cx="40" cy="40" r="33" fill="none" stroke="var(--line)" stroke-width="9"/>
+              <circle cx="40" cy="40" r="33" fill="none" stroke="var(--accent)" stroke-width="9" stroke-linecap="round" stroke-dasharray="207" stroke-dashoffset="76" transform="rotate(-90 40 40)"/>
+              <text x="40" y="46" text-anchor="middle">63%</text>
+            </svg>
+            <div class="pill">12 days<small>study streak</small></div>
+          </div>
+        </div>
+        <svg class="owl" id="owl" viewBox="0 0 200 200" aria-hidden="true">
+          <use href="#owl-big"/>
+        </svg>
+      </div>
+    </div>
+    <div class="picker" role="group" aria-label="Try a theme">
+      <span>Try a theme</span>
+      <span id="swatches" style="display:contents"></span>
+    </div>
+  </div>
+</header>
+</div>
+
+<section id="features" class="alt">
+  <div class="wrap">
+    <div class="head">
+      <h2>Everything you need to study, built into the browser</h2>
+      <p>These features are already working in the current build.</p>
+    </div>
+    <div class="feat">
+      <article class="big">
+        <h3>A timer that fits how you work</h3>
+        <p>Use Pomodoro or a free stopwatch. Set your own focus and break lengths, say what you’re working on before you start, and rate your focus in one tap afterwards. Between rounds, the break coach suggests a stretch, a glass of water, or the 20-20-20 eye rule.</p>
+      </article>
+      <article>
+        <h3>Streaks that forgive</h3>
+        <p>Rest-day tokens keep your streak alive after a missed day, so one bad day never erases weeks of work.</p>
+      </article>
+      <article>
+        <h3>A heatmap of your effort</h3>
+        <p>A 12-week calendar grid shows your study time. Darker tiles mean deeper sessions.</p>
+      </article>
+      <article>
+        <h3>Exam countdowns</h3>
+        <p>Add an exam date and see the days left, plus a daily pace to aim for. Hootly suggests a goal from your recent weeks.</p>
+      </article>
+      <article>
+        <h3>Quests, XP and an owl that grows</h3>
+        <p>Daily and weekly quests earn bonus XP. Level up to new ranks and unlock owl accessories.</p>
+      </article>
+      <article>
+        <h3>Gentle focus help</h3>
+        <p>Jot stray thoughts into the parking lot with Ctrl+Shift+P instead of leaving the page. Nudges are playful and you can snooze them. Nothing is ever blocked.</p>
+      </article>
+      <article>
+        <h3>Study tools in one place</h3>
+        <p>Open the command palette with Ctrl+K, copy citations in APA, MLA or BibTeX, play offline ambient sounds, and read with a focus ruler.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split">
+    <div class="head" style="margin:0">
+      <h2>Make it yours, and make it easy on the eyes</h2>
+      <p>Hootly ships with 16 themes: eight colorful gradients and eight inspired by the careers students are working toward. Every theme has a light and a dark mode, and the owl wears the colors. Profession themes add a small accessory, like a stethoscope or a gavel.</p>
+      <p style="margin-top:12px">Try the theme dots at the top of this page.</p>
+    </div>
+    <ul class="checks">
+      <li><b>Gradient themes</b><span>Aurora, Sunset, Ocean, Forest, Sakura, Lavender, Midnight and Mono Focus.</span></li>
+      <li><b>Profession themes</b><span>Medical, Law, Engineering, Tech, Teaching, Architecture, Science and Business, each with its own rank names and greeting.</span></li>
+      <li><b>Comfortable by design</b><span>Dyslexia-friendly font option, high contrast modes, full keyboard control, and reduced motion support. Confetti and animations can be turned off.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="privacy" class="alt">
+  <div class="wrap split">
+    <div class="head" style="margin:0">
+      <h2>Your study data stays on your computer</h2>
+      <p>Many students are under 18, so privacy comes first. Hootly keeps everything in a database on your own device and sends nothing out by default.</p>
+    </div>
+    <ul class="checks">
+      <li><b>Local first</b><span>Sessions, streaks and XP live on your device.</span></li>
+      <li><b>No tracking</b><span>No telemetry, and no remote code running in the browser’s own screens.</span></li>
+      <li><b>Locked-down web pages</b><span>Websites run in isolated, sandboxed views, kept apart from the app itself.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="progress">
+  <div class="wrap">
+    <div class="head">
+      <h2>Where Hootly is today</h2>
+      <p>Hootly is built one small milestone at a time. The first six are done, and the installer for a public beta is the last step.</p>
+    </div>
+    <ol class="road">
+      <li class="done"><div>Tabs and navigation<small>Multiple tabs, address bar, back, forward and reload</small></div><span class="tag">Done</span></li>
+      <li class="done"><div>Look and feel<small>Theme engine, 16 themes, the owl, onboarding</small></div><span class="tag">Done</span></li>
+      <li class="done"><div>Study timer and break coach<small>Pomodoro, intention and reflection, burnout banner</small></div><span class="tag">Done</span></li>
+      <li class="done"><div>Study tools<small>Command palette, parking lot, citations, ambient sounds, focus ruler</small></div><span class="tag">Done</span></li>
+      <li class="done"><div>Goals, streaks and heatmap<small>Rest-day tokens, exam countdown, smart goals</small></div><span class="tag">Done</span></li>
+      <li class="done"><div>XP, quests and owl evolution<small>Ranks, quests, streak flame and accessories</small></div><span class="tag">Done</span></li>
+      <li><div>Saved study history<small>Keep every session on your device between launches</small></div><span class="tag">Next</span></li>
+      <li><div>Reminders and wind-down<small>Windows notifications and a bedtime prompt</small></div><span class="tag">Planned</span></li>
+      <li><div>Weekly review<small>A reflective summary of your week</small></div><span class="tag">Planned</span></li>
+      <li><div>Installer and beta<small>A Windows installer you can download</small></div><span class="tag">Planned</span></li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Hootly, a study browser for students. Made with care.</p>
+    <p><a href="https://github.com/edupotnurusrichandan/hootly">github.com/edupotnurusrichandan/hootly</a></p>
+  </div>
+</footer>
+
+<!-- owl artwork, reused via <use>; colors come from the active theme -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="owl-mini">
+      <path d="M40 44 L52 8 L84 34Z M160 44 L148 8 L116 34Z" fill="var(--accent)"/>
+      <ellipse cx="100" cy="112" rx="72" ry="78" fill="var(--accent)"/>
+      <ellipse cx="100" cy="140" rx="44" ry="42" fill="#fff" opacity=".28"/>
+      <circle cx="72" cy="84" r="26" fill="#fff"/><circle cx="128" cy="84" r="26" fill="#fff"/>
+      <circle cx="74" cy="86" r="11" fill="#1f1b33"/><circle cx="126" cy="86" r="11" fill="#1f1b33"/>
+      <path d="M90 104 L110 104 L100 122Z" fill="#f7b731"/>
+    </g>
+    <g id="owl-big">
+      <path d="M38 52 L50 8 L88 38Z M162 52 L150 8 L112 38Z" fill="var(--accent)"/>
+      <ellipse cx="100" cy="118" rx="74" ry="76" fill="var(--accent)"/>
+      <ellipse cx="100" cy="146" rx="46" ry="40" fill="#fff" opacity=".28"/>
+      <path d="M26 118 Q14 150 38 166 Q40 138 36 112Z M174 118 Q186 150 162 166 Q160 138 164 112Z" fill="var(--to)" opacity=".85"/>
+      <g class="blink">
+        <circle cx="70" cy="82" r="28" fill="#fff"/><circle cx="130" cy="82" r="28" fill="#fff"/>
+        <circle class="pupil" cx="72" cy="84" r="12" fill="#1f1b33"/><circle class="pupil" cx="128" cy="84" r="12" fill="#1f1b33"/>
+        <circle cx="76" cy="79" r="3.5" fill="#fff"/><circle cx="132" cy="79" r="3.5" fill="#fff"/>
+      </g>
+      <path d="M90 104 L110 104 L100 124Z" fill="#f7b731"/>
+      <path d="M78 190 h14 M108 190 h14" stroke="#f7b731" stroke-width="7" stroke-linecap="round"/>
+    </g>
+  </defs>
+</svg>
+
+<script>
+(function(){
+  var themes=[
+    ["Aurora","#5b4bdb","#5b4bdb","#12a4c9"],
+    ["Sunset","#d9480f","#f76707","#e64980"],
+    ["Ocean","#0b6bcb","#0b6bcb","#15aabf"],
+    ["Forest","#2b7a4b","#2b7a4b","#82a93b"],
+    ["Sakura","#c2255c","#e64980","#f783ac"],
+    ["Lavender","#7048e8","#7048e8","#b197fc"]
+  ];
+  var root=document.documentElement,box=document.getElementById("swatches");
+  function set(i){
+    var t=themes[i];
+    root.style.setProperty("--accent",t[1]);
+    root.style.setProperty("--from",t[2]);
+    root.style.setProperty("--to",t[3]);
+    var b=box.children;
+    for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k===i?"true":"false");
+  }
+  themes.forEach(function(t,i){
+    var b=document.createElement("button");
+    b.className="sw";b.type="button";
+    b.title=t[0];b.setAttribute("aria-label",t[0]+" theme");
+    b.style.background="linear-gradient(135deg,"+t[2]+","+t[3]+")";
+    b.addEventListener("click",function(){set(i)});
+    box.appendChild(b);
+  });
+  set(0);
+
+  // pupils follow the pointer (skipped when reduced motion is on)
+  if(window.matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+  var owl=document.getElementById("owl"),pupils=document.querySelectorAll("#owl-big .pupil");
+  addEventListener("pointermove",function(e){
+    var r=owl.getBoundingClientRect(),
+        dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height*.4),
+        d=Math.hypot(dx,dy)||1,m=Math.min(7,d/30);
+    pupils.forEach(function(p){p.style.transform="translate("+(dx/d*m)+"px,"+(dy/d*m)+"px)"});
+  });
+})();
+</script>
+</body>
+</html>
