@@ -1,0 +1,40 @@
+{
+  "id": "business",
+  "name": "Business",
+  "type": "profession",
+  "description": "Emerald compounding growth and boardroom navy for future founders and strategists.",
+  "light": {
+    "bg": "#f0fdf4",
+    "surface": "#ffffff",
+    "surfaceHover": "#dcfce7",
+    "border": "#bbf7d0",
+    "text": "#052e16",
+    "textMuted": "#166534",
+    "accent": "#059669",
+    "accentHover": "#047857"
+  },
+  "dark": {
+    "bg": "#06150d",
+    "surface": "#0e2417",
+    "surfaceHover": "#153623",
+    "border": "#1f4f34",
+    "text": "#f0fdf4",
+    "textMuted": "#86efac",
+    "accent": "#34d399",
+    "accentHover": "#6ee7b7"
+  },
+  "gradient": {
+    "from": "#047857",
+    "to": "#0f766e"
+  },
+  "ranks": [
+    "Venture Analyst",
+    "Product Strategist",
+    "Managing Director",
+    "Chief Executive",
+    "Titan of Industry"
+  ],
+  "greeting": "Compound your daily efforts.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Briefcase"
+}

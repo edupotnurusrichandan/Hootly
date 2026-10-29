@@ -1,0 +1,40 @@
+{
+  "id": "ocean",
+  "name": "Ocean",
+  "type": "gradient",
+  "description": "Deep maritime blues and fresh aqua for calm clarity.",
+  "light": {
+    "bg": "#f0fdfa",
+    "surface": "#ffffff",
+    "surfaceHover": "#e0f2fe",
+    "border": "#bae6fd",
+    "text": "#0f172a",
+    "textMuted": "#64748b",
+    "accent": "#0284c7",
+    "accentHover": "#0369a1"
+  },
+  "dark": {
+    "bg": "#0a141d",
+    "surface": "#122130",
+    "surfaceHover": "#1a2f45",
+    "border": "#1e3c5a",
+    "text": "#f0f9ff",
+    "textMuted": "#94a3b8",
+    "accent": "#38bdf8",
+    "accentHover": "#7dd3fc"
+  },
+  "gradient": {
+    "from": "#0284c7",
+    "to": "#38bdf8"
+  },
+  "ranks": [
+    "Novice Scholar",
+    "Focused Apprentice",
+    "Dedicated Learner",
+    "Master Student",
+    "Grand Scholar"
+  ],
+  "greeting": "Dive deep into your studies.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Waves"
+}

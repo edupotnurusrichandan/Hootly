@@ -1,0 +1,47 @@
+{
+  "name": "study-browser",
+  "version": "0.1.0",
+  "description": "A Windows desktop browser for students with habit tracking and beautiful themes",
+  "main": "dist/main/index.js",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build:main": "esbuild src/main/index.ts --bundle --platform=node --target=node20 --outfile=dist/main/index.js --external:electron --external:electron-updater",
+    "build:preload": "esbuild src/preload/index.ts --bundle --platform=node --target=node20 --outfile=dist/preload/index.js --external:electron",
+    "build:renderer": "node -r ./scripts/patch-fs.js ./node_modules/vite/bin/vite.js build",
+    "build": "npm run build:main && npm run build:preload && npm run build:renderer",
+    "typecheck": "tsc --noEmit",
+    "start": "electron dist/main/index.js",
+    "test": "node --test tests/*.test.js",
+    "dist:win": "electron-builder --win --config electron-builder.json",
+    "screenshots": "node -e \"const { spawn } = require('child_process'); const p = spawn(require('electron'), ['dist/main/index.js', '--disable-gpu', '--capture-screenshots'], { stdio: 'inherit' }); p.on('close', code => process.exit(code));\""
+  },
+  "keywords": [
+    "electron",
+    "browser",
+    "study",
+    "react",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "canvas-confetti": "^1.9.4",
+    "electron-updater": "^6.8.11",
+    "lucide-react": "^0.460.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^45.1.0",
+    "electron-builder": "^26.18.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.0"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "teaching",
+  "name": "Teaching",
+  "type": "profession",
+  "description": "Warm chalkboard amber and inspiring emerald for educators and mentors.",
+  "light": {
+    "bg": "#fefce8",
+    "surface": "#ffffff",
+    "surfaceHover": "#fef9c3",
+    "border": "#fef08a",
+    "text": "#1c1917",
+    "textMuted": "#713f12",
+    "accent": "#d97706",
+    "accentHover": "#b45309"
+  },
+  "dark": {
+    "bg": "#131006",
+    "surface": "#211c0c",
+    "surfaceHover": "#302912",
+    "border": "#463b1a",
+    "text": "#fefce8",
+    "textMuted": "#fef08a",
+    "accent": "#fbbf24",
+    "accentHover": "#fcd34d"
+  },
+  "gradient": {
+    "from": "#b45309",
+    "to": "#10b981"
+  },
+  "ranks": [
+    "Teacher's Aide",
+    "Classroom Instructor",
+    "Curriculum Specialist",
+    "Headmaster",
+    "Distinguished Professor"
+  ],
+  "greeting": "To teach is to learn twice.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "GraduationCap"
+}

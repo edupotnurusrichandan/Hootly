@@ -1,0 +1,17 @@
+node_modules/
+dist/
+release/
+.npm-cache/
+.test-tmp/
+.vs/
+AppData/
+.electron-gyp/
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.log
+elease/
+ꅨનȨ/

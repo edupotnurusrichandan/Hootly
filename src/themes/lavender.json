@@ -1,0 +1,40 @@
+{
+  "id": "lavender",
+  "name": "Lavender",
+  "type": "gradient",
+  "description": "Soothing royal purple and gentle violet to soothe study anxiety.",
+  "light": {
+    "bg": "#faf5ff",
+    "surface": "#ffffff",
+    "surfaceHover": "#f3e8ff",
+    "border": "#e9d5ff",
+    "text": "#1e132e",
+    "textMuted": "#6b548b",
+    "accent": "#7c3aed",
+    "accentHover": "#6d28d9"
+  },
+  "dark": {
+    "bg": "#130d1d",
+    "surface": "#211633",
+    "surfaceHover": "#2f1f49",
+    "border": "#432b67",
+    "text": "#faf5ff",
+    "textMuted": "#c4b5fd",
+    "accent": "#a78bfa",
+    "accentHover": "#c4b5fd"
+  },
+  "gradient": {
+    "from": "#7c3aed",
+    "to": "#c084fc"
+  },
+  "ranks": [
+    "Novice Scholar",
+    "Focused Apprentice",
+    "Dedicated Learner",
+    "Master Student",
+    "Grand Scholar"
+  ],
+  "greeting": "Calm, focused, and steady.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Feather"
+}

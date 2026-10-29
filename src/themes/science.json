@@ -1,0 +1,40 @@
+{
+  "id": "science",
+  "name": "Science",
+  "type": "profession",
+  "description": "Atomic violet and quantum cyan for researchers, physicists, and laboratory explorers.",
+  "light": {
+    "bg": "#faf5ff",
+    "surface": "#ffffff",
+    "surfaceHover": "#f3e8ff",
+    "border": "#e9d5ff",
+    "text": "#1e1035",
+    "textMuted": "#581c87",
+    "accent": "#7c3aed",
+    "accentHover": "#6d28d9"
+  },
+  "dark": {
+    "bg": "#0d0917",
+    "surface": "#1a122e",
+    "surfaceHover": "#261a43",
+    "border": "#3b2968",
+    "text": "#fdf4ff",
+    "textMuted": "#d8b4fe",
+    "accent": "#c084fc",
+    "accentHover": "#e9d5ff"
+  },
+  "gradient": {
+    "from": "#7c3aed",
+    "to": "#06b6d4"
+  },
+  "ranks": [
+    "Lab Apprentice",
+    "Research Fellow",
+    "Lead Investigator",
+    "Doctorate Scientist",
+    "Nobel Laureate"
+  ],
+  "greeting": "Curiosity unlocks the universe.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Atom"
+}

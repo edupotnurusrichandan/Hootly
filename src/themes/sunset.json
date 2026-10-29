@@ -1,0 +1,40 @@
+{
+  "id": "sunset",
+  "name": "Sunset",
+  "type": "gradient",
+  "description": "Warm coral and amber tones to power your evening focus.",
+  "light": {
+    "bg": "#fffaf5",
+    "surface": "#ffffff",
+    "surfaceHover": "#fff1e6",
+    "border": "#fed7aa",
+    "text": "#1c1917",
+    "textMuted": "#78716c",
+    "accent": "#ea580c",
+    "accentHover": "#c2410c"
+  },
+  "dark": {
+    "bg": "#1c1210",
+    "surface": "#291a16",
+    "surfaceHover": "#3a2520",
+    "border": "#4a2c24",
+    "text": "#fafaf9",
+    "textMuted": "#a8a29e",
+    "accent": "#f97316",
+    "accentHover": "#fb923c"
+  },
+  "gradient": {
+    "from": "#f97316",
+    "to": "#ec4899"
+  },
+  "ranks": [
+    "Novice Scholar",
+    "Focused Apprentice",
+    "Dedicated Learner",
+    "Master Student",
+    "Grand Scholar"
+  ],
+  "greeting": "Bring your warm focus today.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Sun"
+}

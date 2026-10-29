@@ -1,0 +1,40 @@
+{
+  "id": "law",
+  "name": "Law",
+  "type": "profession",
+  "description": "Gavel gold and mahogany warmth for advocates, legal scholars, and future judges.",
+  "light": {
+    "bg": "#fffbeb",
+    "surface": "#ffffff",
+    "surfaceHover": "#fef3c7",
+    "border": "#fde68a",
+    "text": "#291605",
+    "textMuted": "#78350f",
+    "accent": "#b45309",
+    "accentHover": "#92400e"
+  },
+  "dark": {
+    "bg": "#160e06",
+    "surface": "#26190e",
+    "surfaceHover": "#392415",
+    "border": "#51321d",
+    "text": "#fefce8",
+    "textMuted": "#fde047",
+    "accent": "#f59e0b",
+    "accentHover": "#fbbf24"
+  },
+  "gradient": {
+    "from": "#78350f",
+    "to": "#d97706"
+  },
+  "ranks": [
+    "1L Law Student",
+    "Paralegal Fellow",
+    "Associate Attorney",
+    "Partner",
+    "Chief Justice"
+  ],
+  "greeting": "Justice and precision in every detail.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Scale"
+}

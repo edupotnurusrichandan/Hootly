@@ -1,0 +1,26 @@
+{
+  "appId": "com.hootly.browser",
+  "productName": "Hootly",
+  "directories": { "output": "release" },
+  "publish": [{
+    "provider": "github",
+    "owner": "edupotnurusrichandan",
+    "repo": "hootly",
+    "releaseType": "release"
+  }],
+  "win": {
+    "target": [
+      {"target": "nsis", "arch": ["x64"]},
+      {"target": "portable", "arch": ["x64"]}
+    ],
+    "icon": "assets/icon.ico"
+  },
+  "files": ["package.json", "dist/**/*", "src/themes/**/*", "assets/**/*"],
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Hootly"
+  }
+}

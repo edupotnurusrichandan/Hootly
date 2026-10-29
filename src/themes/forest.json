@@ -1,0 +1,40 @@
+{
+  "id": "forest",
+  "name": "Forest",
+  "type": "gradient",
+  "description": "Earthy pine and fresh lime green for sustainable, grounded growth.",
+  "light": {
+    "bg": "#f7fee7",
+    "surface": "#ffffff",
+    "surfaceHover": "#ecfccb",
+    "border": "#d9f99d",
+    "text": "#142008",
+    "textMuted": "#4d6b2c",
+    "accent": "#15803d",
+    "accentHover": "#166534"
+  },
+  "dark": {
+    "bg": "#0d1a0f",
+    "surface": "#152918",
+    "surfaceHover": "#1c3821",
+    "border": "#254e2c",
+    "text": "#f0fdf4",
+    "textMuted": "#86efac",
+    "accent": "#4ade80",
+    "accentHover": "#86efac"
+  },
+  "gradient": {
+    "from": "#15803d",
+    "to": "#84cc16"
+  },
+  "ranks": [
+    "Novice Scholar",
+    "Focused Apprentice",
+    "Dedicated Learner",
+    "Master Student",
+    "Grand Scholar"
+  ],
+  "greeting": "Grow your knowledge today.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Trees"
+}

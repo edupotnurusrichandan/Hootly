@@ -1,0 +1,40 @@
+{
+  "id": "engineering",
+  "name": "Engineering",
+  "type": "profession",
+  "description": "Draftsman orange and technical blueprint precision for creators and builders.",
+  "light": {
+    "bg": "#fff7ed",
+    "surface": "#ffffff",
+    "surfaceHover": "#ffedd5",
+    "border": "#fed7aa",
+    "text": "#1f1305",
+    "textMuted": "#7c2d12",
+    "accent": "#ea580c",
+    "accentHover": "#c2410c"
+  },
+  "dark": {
+    "bg": "#140c06",
+    "surface": "#23140a",
+    "surfaceHover": "#351e0f",
+    "border": "#4c2a15",
+    "text": "#fff7ed",
+    "textMuted": "#fed7aa",
+    "accent": "#fb923c",
+    "accentHover": "#fdba74"
+  },
+  "gradient": {
+    "from": "#c2410c",
+    "to": "#f59e0b"
+  },
+  "ranks": [
+    "Junior Tinkerer",
+    "Apprentice Engineer",
+    "Systems Architect",
+    "Lead Engineer",
+    "Master Constructor"
+  ],
+  "greeting": "Build the future piece by piece.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Wrench"
+}

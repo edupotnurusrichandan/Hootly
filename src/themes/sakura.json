@@ -1,0 +1,40 @@
+{
+  "id": "sakura",
+  "name": "Sakura",
+  "type": "gradient",
+  "description": "Delicate cherry blossom rose and soft petal pinks.",
+  "light": {
+    "bg": "#fff5f7",
+    "surface": "#ffffff",
+    "surfaceHover": "#ffe4e9",
+    "border": "#fbcfe8",
+    "text": "#261118",
+    "textMuted": "#83485c",
+    "accent": "#db2777",
+    "accentHover": "#be185d"
+  },
+  "dark": {
+    "bg": "#1a0d13",
+    "surface": "#2b1520",
+    "surfaceHover": "#3d1e2e",
+    "border": "#55283f",
+    "text": "#fdf2f8",
+    "textMuted": "#f9a8d4",
+    "accent": "#f472b6",
+    "accentHover": "#fbcfe8"
+  },
+  "gradient": {
+    "from": "#ec4899",
+    "to": "#fda4af"
+  },
+  "ranks": [
+    "Novice Scholar",
+    "Focused Apprentice",
+    "Dedicated Learner",
+    "Master Student",
+    "Grand Scholar"
+  ],
+  "greeting": "Bloom with every session.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Flower2"
+}

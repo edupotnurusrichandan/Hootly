@@ -1,0 +1,40 @@
+{
+  "id": "architecture",
+  "name": "Architecture",
+  "type": "profession",
+  "description": "Blueprint cyan and drafting slate for architects and structural designers.",
+  "light": {
+    "bg": "#f0fdfa",
+    "surface": "#ffffff",
+    "surfaceHover": "#e0f2fe",
+    "border": "#bae6fd",
+    "text": "#0f172a",
+    "textMuted": "#334155",
+    "accent": "#0891b2",
+    "accentHover": "#0e7490"
+  },
+  "dark": {
+    "bg": "#081318",
+    "surface": "#10222b",
+    "surfaceHover": "#17313e",
+    "border": "#214658",
+    "text": "#f0fdfa",
+    "textMuted": "#67e8f9",
+    "accent": "#22d3ee",
+    "accentHover": "#67e8f9"
+  },
+  "gradient": {
+    "from": "#0e7490",
+    "to": "#64748b"
+  },
+  "ranks": [
+    "Draftsman",
+    "Studio Designer",
+    "Project Architect",
+    "Principal Architect",
+    "Master Urbanist"
+  ],
+  "greeting": "Design with purpose, construct with care.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Building2"
+}

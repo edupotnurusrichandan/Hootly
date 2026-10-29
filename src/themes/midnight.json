@@ -1,0 +1,40 @@
+{
+  "id": "midnight",
+  "name": "Midnight",
+  "type": "gradient",
+  "description": "Deep cosmos indigo and starlight glow for late-night study marathons.",
+  "light": {
+    "bg": "#f1f5f9",
+    "surface": "#ffffff",
+    "surfaceHover": "#e2e8f0",
+    "border": "#cbd5e1",
+    "text": "#090d16",
+    "textMuted": "#475569",
+    "accent": "#4338ca",
+    "accentHover": "#3730a3"
+  },
+  "dark": {
+    "bg": "#060913",
+    "surface": "#0e1424",
+    "surfaceHover": "#16203a",
+    "border": "#212f54",
+    "text": "#f8fafc",
+    "textMuted": "#a5b4fc",
+    "accent": "#6366f1",
+    "accentHover": "#818cf8"
+  },
+  "gradient": {
+    "from": "#312e81",
+    "to": "#6366f1"
+  },
+  "ranks": [
+    "Novice Scholar",
+    "Focused Apprentice",
+    "Dedicated Learner",
+    "Master Student",
+    "Grand Scholar"
+  ],
+  "greeting": "The quiet hours are yours.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Moon"
+}

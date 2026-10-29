@@ -1,0 +1,40 @@
+{
+  "id": "tech",
+  "name": "Tech",
+  "type": "profession",
+  "description": "Cyber violet and terminal cyan for coders, designers, and software engineers.",
+  "light": {
+    "bg": "#eef2ff",
+    "surface": "#ffffff",
+    "surfaceHover": "#e0e7ff",
+    "border": "#c7d2fe",
+    "text": "#0f172a",
+    "textMuted": "#4338ca",
+    "accent": "#4f46e5",
+    "accentHover": "#4338ca"
+  },
+  "dark": {
+    "bg": "#080b18",
+    "surface": "#10162f",
+    "surfaceHover": "#182146",
+    "border": "#25336d",
+    "text": "#f8fafc",
+    "textMuted": "#a5b4fc",
+    "accent": "#818cf8",
+    "accentHover": "#a5b4fc"
+  },
+  "gradient": {
+    "from": "#4f46e5",
+    "to": "#06b6d4"
+  },
+  "ranks": [
+    "Junior Dev",
+    "Full Stack Hacker",
+    "Senior Architect",
+    "Principal Engineer",
+    "Distinguished Fellow"
+  ],
+  "greeting": "Debug your mind, compile your thoughts.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Code2"
+}

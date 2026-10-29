@@ -1,0 +1,40 @@
+{
+  "id": "medical",
+  "name": "Medical",
+  "type": "profession",
+  "description": "Clinical cyan and surgical clarity for future physicians and healthcare leaders.",
+  "light": {
+    "bg": "#f0fdfa",
+    "surface": "#ffffff",
+    "surfaceHover": "#e0f2fe",
+    "border": "#99f6e4",
+    "text": "#0f172a",
+    "textMuted": "#475569",
+    "accent": "#0284c7",
+    "accentHover": "#0369a1"
+  },
+  "dark": {
+    "bg": "#06131c",
+    "surface": "#0f2334",
+    "surfaceHover": "#16344d",
+    "border": "#184566",
+    "text": "#f0f9ff",
+    "textMuted": "#7dd3fc",
+    "accent": "#14b8a6",
+    "accentHover": "#2dd4bf"
+  },
+  "gradient": {
+    "from": "#0284c7",
+    "to": "#14b8a6"
+  },
+  "ranks": [
+    "Pre-Med Student",
+    "Medical Intern",
+    "Resident Physician",
+    "Attending Specialist",
+    "Chief of Medicine"
+  ],
+  "greeting": "Healing begins with learning.",
+  "nudgeStyle": "gentle",
+  "badgeIcon": "Stethoscope"
+}
